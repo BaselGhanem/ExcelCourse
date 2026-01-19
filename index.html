@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="دورة إكسل المتقدمة لموظفي دار الدواء - مع المحلل باسل غانم">
+    <title>التميز في تحليل البيانات | دار الدواء</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth Scroll Fix for Fixed Navbar */
+        section, footer {
+            scroll-margin-top: 100px;
+        }
+
+        ::selection { background-color: #1e40af; color: white; }
+        
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        /* Timeline Styles */
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px; /* Line on right for mobile */
+            width: 3px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+        @media (min-width: 768px) {
+            .timeline-line { right: 50%; transform: translateX(50%); }
+        }
+
+        /* Lists */
+        .check-list li {
+            position: relative;
+            padding-right: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+        .check-list li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 1.2rem;
+            line-height: 1rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+    </style>
+</head>
+<body class="text-slate-700 antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="https://raw.githubusercontent.com/BaselGhanem/introduction/refs/heads/main/uplift-dad-website-05.png" 
+                         alt="Dar Al Dawa Uplift" 
+                         class="h-16 w-auto object-contain">
+                </div>
+
+                <div class="hidden md:flex items-center gap-8 font-semibold text-slate-600 text-sm">
+                    <a href="#objectives" class="hover:text-blue-700 transition-colors">أهداف البرنامج</a>
+                    <a href="#agenda" class="hover:text-blue-700 transition-colors">الأجندة الزمنية</a>
+                    <a href="#instructor" class="hover:text-blue-700 transition-colors">عن المدرب</a>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-800 focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-lg absolute w-full left-0 top-24">
+            <div class="flex flex-col p-4 gap-4 font-semibold text-slate-600">
+                <a href="#objectives" class="mobile-link hover:bg-slate-50 p-3 rounded-lg transition-colors flex items-center gap-3">
+                    <i data-lucide="target" class="w-5 h-5 text-blue-600"></i> أهداف البرنامج
+                </a>
+                <a href="#agenda" class="mobile-link hover:bg-slate-50 p-3 rounded-lg transition-colors flex items-center gap-3">
+                    <i data-lucide="calendar" class="w-5 h-5 text-blue-600"></i> الأجندة الزمنية
+                </a>
+                <a href="#instructor" class="mobile-link hover:bg-slate-50 p-3 rounded-lg transition-colors flex items-center gap-3">
+                    <i data-lucide="user" class="w-5 h-5 text-blue-600"></i> عن المدرب
+                </a>
+              
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-50 to-white -z-10"></div>
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-blue-50/50 skew-x-12 transform origin-top-right -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div data-aos="fade-down" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-800 text-xs font-bold tracking-wide mb-6">
+                <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                خاص بموظفي شركة دار الدواء
+            </div>
+
+            <h1 class="text-3xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
+                الارتقاء بمهارات تحليل البيانات <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-emerald-600">لتعزيز الكفاءة البيعية</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-3xl mx-auto leading-relaxed px-2" data-aos="fade-up" data-aos-delay="200">
+                برنامج تدريبي مكثف (Medical Reps Oriented)، نحوِّل فيه البيانات إلى قرارات، والأرقام إلى إنجازات. بإشراف زميلكم 
+                <span class="font-bold text-slate-900">باسل غانم</span>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 px-4" data-aos="fade-up" data-aos-delay="300">
+                <a href="#agenda" class="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-3 rounded-lg hover:bg-slate-800 transition-colors font-semibold shadow-lg">
+                    <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                    استعراض الأجندة
+                </a>
+                <a href="#instructor" class="flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-3 rounded-lg hover:bg-slate-50 transition-colors font-semibold">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    عن المدرب
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="objectives" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">لماذا هذه الدورة الآن؟</h2>
+                <p class="text-slate-500">استثمار ساعتين يومياً لتوفير ساعات من العمل لاحقاً</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-blue-600 group-hover:scale-110 transition-transform">
+                        <i data-lucide="target" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Target Achievement</h3>
+                    <p class="text-sm text-slate-600">تحليل الفجوات (Gap Analysis) ومتابعة الأداء البيعي بدقة متناهية.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-emerald-600 group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Efficiency</h3>
+                    <p class="text-sm text-slate-600">أتمتة التقارير اليومية والأسبوعية لتقليل الوقت المستغرق في الأعمال المكتبية.</p>
+                </div>
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 text-purple-600 group-hover:scale-110 transition-transform">
+                        <i data-lucide="presentation" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Data Visualization</h3>
+                    <p class="text-sm text-slate-600">تقديم عروض تقديمية مقنعة للإدارة مدعومة بلوحات بيانات تفاعلية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agenda" class="py-16 md:py-24 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-down">
+                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">رحلة التعلم</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">الأجندة الزمنية للبرنامج</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-sm font-semibold text-slate-600 bg-white inline-flex px-6 py-2 rounded-2xl md:rounded-full shadow-sm">
+                    <span class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-emerald-600"></i> 08:30 - 10:30 صباحاً</span>
+                    <span class="hidden md:block w-px h-4 bg-slate-300"></span>
+                    <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-red-500"></i> القاعة التدريبية الرئيسية</span>
+                </div>
+            </div>
+
+            <div class="relative py-8">
+                <div class="timeline-line"></div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 md:text-left mb-4 md:mb-0 flex justify-end md:justify-end order-1 md:order-1">
+                        <div class="bg-white border-2 border-blue-600 text-blue-800 font-bold rounded-xl px-4 py-2 text-center shadow-md min-w-[120px]">
+                            <span class="block text-2xl font-black">01</span>
+                            <span class="text-sm uppercase">Feb - Sun</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 order-3 md:order-2">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">الانطلاق وتهيئة بيئة العمل</h3>
+                            <ul class="check-list">
+                                <li>التعرف على واجهة إكسل 365.</li>
+                                <li>أساسيات إدخال البيانات وتنسيق الجداول.</li>
+                                <li>إعداد الصفحة للطباعة (Page Layout).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 order-3 md:order-1">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">محرك الإكسل (المعادلات)</h3>
+                            <ul class="check-list">
+                                <li>إنشاء المعادلات الحسابية الأساسية.</li>
+                                <li>استخدام الدوال (Sum, Average, Count).</li>
+                                <li>التعامل مع المراجع (References).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 md:text-right mb-4 md:mb-0 flex justify-end md:justify-start order-1 md:order-2">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">02</span>
+                            <span class="text-sm uppercase">Feb - Mon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 md:text-left mb-4 md:mb-0 flex justify-end md:justify-end order-1 md:order-1">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">03</span>
+                            <span class="text-sm uppercase">Feb - Tue</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 order-3 md:order-2">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">اتخاذ القرار المنطقي</h3>
+                            <ul class="check-list">
+                                <li>الدوال المنطقية (IF Statements).</li>
+                                <li>معالجة النصوص (Text Functions).</li>
+                                <li>معالجة التواريخ والأوقات (Date & Time).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 order-3 md:order-1">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">الربط والبحث المتقدم</h3>
+                            <ul class="check-list">
+                                <li>دوال البحث (VLOOKUP, HLOOKUP).</li>
+                                <li>ربط الجداول وتفادي التكرار.</li>
+                                <li>اكتشاف الأخطاء وتتبع المعادلات.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 md:text-right mb-4 md:mb-0 flex justify-end md:justify-start order-1 md:order-2">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">04</span>
+                            <span class="text-sm uppercase">Feb - Wed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 md:text-left mb-4 md:mb-0 flex justify-end md:justify-end order-1 md:order-1">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">05</span>
+                            <span class="text-sm uppercase">Feb - Thu</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 order-3 md:order-2">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">إدارة القوائم الكبيرة</h3>
+                            <ul class="check-list">
+                                <li>الفرز والتصفية (Sort & Filter).</li>
+                                <li>التلخيص التلقائي (Subtotals).</li>
+                                <li>إزالة التكرارات وتنظيف البيانات.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex justify-center mb-12">
+                    <div class="bg-slate-200 text-slate-500 px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest z-20">
+                        عطلة نهاية الأسبوع (Fri & Sat)
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 order-3 md:order-1">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">تحليل البيانات الذكي</h3>
+                            <ul class="check-list">
+                                <li>الجداول الديناميكية (Excel Tables).</li>
+                                <li>التنسيق الشرطي (Conditional Formatting).</li>
+                                <li>تحليل البيانات السريع.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 md:text-right mb-4 md:mb-0 flex justify-end md:justify-start order-1 md:order-2">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">08</span>
+                            <span class="text-sm uppercase">Feb - Sun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 md:text-left mb-4 md:mb-0 flex justify-end md:justify-end order-1 md:order-1">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">09</span>
+                            <span class="text-sm uppercase">Feb - Mon</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 order-3 md:order-2">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">السرد القصصي بالبيانات</h3>
+                            <ul class="check-list">
+                                <li>إنشاء الرسوم البيانية (Charts).</li>
+                                <li>تخصيص الرسوم البيانية.</li>
+                                <li>استخدام Sparklines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 order-3 md:order-1">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">التقارير المحورية (PivotTables)</h3>
+                            <ul class="check-list">
+                                <li>إنشاء الجداول المحورية.</li>
+                                <li>استخدام Slicers & Timelines.</li>
+                                <li>Pivot Charts لعرض النتائج.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 md:text-right mb-4 md:mb-0 flex justify-end md:justify-start order-1 md:order-2">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">10</span>
+                            <span class="text-sm uppercase">Feb - Tue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center mb-12" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 md:text-left mb-4 md:mb-0 flex justify-end md:justify-end order-1 md:order-1">
+                        <div class="bg-white border border-slate-200 text-slate-600 font-bold rounded-xl px-4 py-2 text-center shadow-sm min-w-[120px]">
+                            <span class="block text-2xl font-black">11</span>
+                            <span class="text-sm uppercase">Feb - Wed</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 order-3 md:order-2">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-all">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2">الأمان والأتمتة</h3>
+                            <ul class="check-list">
+                                <li>التحقق من صحة البيانات (Data Validation).</li>
+                                <li>حماية الملفات والأوراق (Protection).</li>
+                                <li>مشاركة الملفات والعمل الجماعي.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 pr-12 md:pr-0 md:pl-8 order-3 md:order-1">
+                        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 text-white transform md:hover:scale-105 transition-transform">
+                            <h3 class="font-bold text-lg mb-2 text-yellow-400">اليوم الختامي: المشروع الشامل</h3>
+                            <ul class="check-list text-slate-300">
+                                <li class="text-slate-300 before:text-yellow-400">بناء Dashboard متكامل من الصفر.</li>
+                                <li class="text-slate-300 before:text-yellow-400">الامتحان النهائي (Final Exam).</li>
+                                <li class="text-slate-300 before:text-yellow-400">توزيع الشهادات والختام.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 bottom-0 right-[11px] md:right-1/2 md:mr-[-9px] z-10 flex items-center order-2">
+                        <div class="w-6 h-6 bg-yellow-400 rounded-full border-4 border-slate-900 shadow-lg animate-pulse"></div>
+                    </div>
+                    <div class="w-full md:w-1/2 pr-12 md:pr-8 md:text-right mb-4 md:mb-0 flex justify-end md:justify-start order-1 md:order-2">
+                        <div class="bg-slate-900 border-2 border-yellow-400 text-white font-bold rounded-xl px-4 py-2 text-center shadow-lg min-w-[120px]">
+                            <span class="block text-2xl font-black">12</span>
+                            <span class="text-sm uppercase text-yellow-400">Feb - Thu</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="instructor" class="py-16 md:py-20 bg-white border-t border-slate-200">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="bg-slate-50 rounded-[2rem] p-8 md:p-12 shadow-sm border border-slate-200 flex flex-col md:flex-row items-center gap-12" data-aos="zoom-in">
+                <div class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative">
+                    <img src="https://voxoura.com/media/user_images/Basel_Ghanem.jpg" alt="Basel Ghanem" class="relative w-full h-full object-cover rounded-2xl shadow-lg border-4 border-white">
+                </div>
+                
+                <div class="text-center md:text-right flex-1">
+                    <div class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mb-4">
+                        Sales Analyst | Dar Al Dawa
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">زميلكم: باسل غانم</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6 text-lg">
+                        "في الميدان، الوقت هو العامل الحاسم. بصفتي محلل مبيعات، أدرك أن المندوب الناجح هو من يمتلك المعلومة الصحيحة في الوقت المناسب. هذه الدورة هي خلاصة خبرتي في تطويع الإكسل لخدمة أهدافنا البيعية."
+                    </p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                        <div class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                            <i data-lucide="award" class="w-5 h-5 text-yellow-500"></i>
+                            Microsoft Certified Expert
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="register" class="bg-slate-900 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-right">
+                <p class="font-bold text-white">دار الدواء للتنمية والاستثمار</p>
+                <p class="text-sm opacity-60">قسم التدريب والتطوير</p>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <a href="javascript:void(0)" class="hover:text-white transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                <a href="javascript:void(0)" class="hover:text-white transition-colors"><i data-lucide="mail" class="w-6 h-6"></i></a>
+            </div>
+            
+            <div class="text-sm opacity-60">
+                © 2026 Developed by Basel Ghanem
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+        
+        setTimeout(() => {
+            AOS.refresh();
+        }, 500);
+
+
+        // Sticky Nav Shadow
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+       // Mobile Menu Logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    });
+    // Smooth scroll with offset for fixed navbar
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+
+        mobileMenu.classList.add('hidden');
+
+        const offset = 110;
+        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: y,
+            behavior: 'smooth'
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
